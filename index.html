@@ -226,52 +226,7 @@ function drawWorld(){function drawWorld(){
   ctx.font="12px Arial";
   ctx.fillText("MINNA • Explore your city",8,490);
 }
-ctx.fillStyle="#8fbd78";
-ctx.fillRect(0,0,360,500);
 
-// Roads
-ctx.fillStyle="#b8b8a8";
-ctx.fillRect(0,205,360,90);
-ctx.fillRect(135,0,70,500);
-
-// Buildings
-function building(x,y,w,h,c,name){
-ctx.fillStyle=c;
-ctx.fillRect(x,y,w,h);
-ctx.fillStyle="#fff";
-ctx.font="10px Arial";
-ctx.fillText(name,x+5,y+15);
-ctx.fillStyle="#59402b";
-ctx.fillRect(x+w/2-5,y+h-15,10,15);
-}
-building(15,25,100,65,"#d69b61","MARKET");
-building(230,25,110,65,"#e5d7ae","SHOP");
-building(15,330,100,75,"#d9c5a0","HOUSE");
-building(230,330,110,75,"#d69b61","HOSPITAL");
-
-// Trees
-for(var i=0;i<8;i++){
-ctx.fillStyle="#286b3b";
-ctx.beginPath();
-ctx.arc(20+i*43,160,10,0,Math.PI*2);
-ctx.fill();
-}
-
-// Player
-ctx.fillStyle="#183dca";
-ctx.beginPath();
-ctx.arc(px,py,10,0,Math.PI*2);
-ctx.fill();
-ctx.fillStyle="#fff";
-ctx.font="11px Arial";
-ctx.textAlign="center";
-ctx.fillText(S?S.name:"YOU",px,py-15);
-ctx.textAlign="left";
-
-ctx.fillStyle="#14231c";
-ctx.font="12px Arial";
-ctx.fillText("MINNA • Explore your city",8,490);
-}
 world.addEventListener("click",function(e){
 world.addEventListener("click",function(e){
 var r=world.getBoundingClientRect();
