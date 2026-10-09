@@ -117,7 +117,115 @@ var world=document.getElementById("world");
 var ctx=world.getContext("2d");
 var px=180,py=250;
 
-function drawWorld(){
+function drawWorld(){function drawWorld(){
+  ctx.clearRect(0,0,360,500);
+
+  // Grass
+  ctx.fillStyle="#8fbd78";
+  ctx.fillRect(0,0,360,500);
+
+  // Roads
+  ctx.fillStyle="#777b78";
+  ctx.fillRect(135,0,70,500);
+  ctx.fillRect(0,205,360,90);
+
+  // Road markings
+  ctx.strokeStyle="#f6e9a9";
+  ctx.lineWidth=2;
+  ctx.setLineDash([12,10]);
+  ctx.beginPath();
+  ctx.moveTo(170,0);
+  ctx.lineTo(170,200);
+  ctx.moveTo(170,300);
+  ctx.lineTo(170,500);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Market stalls
+  function stall(x,y,w,h,roof,name){
+    ctx.fillStyle="#e8d4b0";
+    ctx.fillRect(x,y,w,h);
+
+    ctx.fillStyle=roof;
+    ctx.fillRect(x-4,y-12,w+8,18);
+
+    for(let i=0;i<4;i++){
+      ctx.fillStyle=i%2===0?"#fff0d4":"#a94f32";
+      ctx.fillRect(x+i*w/4,y-12,w/4,18);
+    }
+
+    ctx.fillStyle="#865333";
+    ctx.fillRect(x,y+h-18,w,18);
+
+    for(let i=0;i<4;i++){
+      ctx.fillStyle=["#e8a72c","#b63b27","#438c42","#f4d65b"][i];
+      ctx.beginPath();
+      ctx.arc(x+12+i*(w-24)/3,y+h-26,5,0,Math.PI*2);
+      ctx.fill();
+    }
+
+    ctx.fillStyle="#fff8df";
+    ctx.fillRect(x+3,y+4,w-6,15);
+    ctx.fillStyle="#35261b";
+    ctx.font="bold 9px Arial";
+    ctx.fillText(name,x+7,y+15);
+  }
+
+  stall(12,30,95,75,"#bd3c25","FRESH FOOD");
+  stall(245,30,100,75,"#d49b32","LOCAL MARKET");
+
+  // Buildings
+  function building(x,y,w,h,wall,roof,name){
+    ctx.fillStyle=roof;
+    ctx.fillRect(x-5,y-10,w+10,25);
+
+    ctx.fillStyle=wall;
+    ctx.fillRect(x,y+5,w,h-5);
+
+    ctx.fillStyle="#f1dfb8";
+    ctx.fillRect(x+8,y+20,20,20);
+    ctx.fillRect(x+w-28,y+20,20,20);
+
+    ctx.fillStyle="#67452f";
+    ctx.fillRect(x+w/2-7,y+h-25,14,25);
+
+    ctx.fillStyle="#fff";
+    ctx.font="bold 10px Arial";
+    ctx.fillText(name,x+5,y+17);
+  }
+
+  building(15,340,100,70,"#d8bd91","#8b5133","HOUSE");
+  building(235,340,110,70,"#e3d6a5","#b84b35","HOSPITAL");
+
+  // Trees
+  for(let i=0;i<7;i++){
+    let x=20+i*50;
+
+    ctx.fillStyle="#76502d";
+    ctx.fillRect(x-3,145,6,17);
+
+    ctx.fillStyle="#286b3b";
+    ctx.beginPath();
+    ctx.arc(x,140,13,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  // Player
+  ctx.fillStyle="#183dca";
+  ctx.beginPath();
+  ctx.arc(px,py,10,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.fillStyle="#fff";
+  ctx.font="11px Arial";
+  ctx.textAlign="center";
+  ctx.fillText(S?S.name:"YOU",px,py-15);
+  ctx.textAlign="left";
+
+  ctx.fillStyle="#14231c";
+  ctx.font="12px Arial";
+  ctx.fillText("MINNA • Explore your city",8,490);
+}
 ctx.fillStyle="#8fbd78";
 ctx.fillRect(0,0,360,500);
 
